@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #define MAX_KONTAKTOW 25
 
 struct Contact {
