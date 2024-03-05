@@ -7,7 +7,7 @@ int main() {
 	char str[100];
 
 	printf("Wpisz imie: ");
-	scanf_s("%s", str, sizeof(str));
+	scanf("%s", str, sizeof(str));
 
 	printf("twoje imie: %s\n", str);
 	return 0;
