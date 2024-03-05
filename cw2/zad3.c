@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
 
 struct Point {
 	int x;
@@ -14,21 +13,18 @@ struct Rectangle {
 	struct Point p4;
 };
 
-float odlegloscPunktow(struct Point p1, struct Point p2) {
-	return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
-}
 
 void poleProstokata(struct Rectangle* r) {
-	float dlugoscBoku = odlegloscPunktow(r->p1, r->p2);
-	float dlugoscBoku2 = odlegloscPunktow(r->p2, r->p3);
-	float pole = dlugoscBoku * dlugoscBoku2;
-	printf("Pole prostokata to %f", pole);
+	int dlugoscBoku = r->p2.x - r->p1.x;
+	int dlugoscBoku2 = r->p2.y - r->p3.y;
+	int pole = dlugoscBoku * dlugoscBoku2;
+	printf("Pole prostokata to %d\n", pole);
 }
 
 void obwodProstokata(struct Rectangle* r) {
-	float dlugoscBoku = odlegloscPunktow(r->p1, r->p2);
-	float dlugoscBoku2 = odlegloscPunktow(r->p2, r->p3);
-	printf("Obwod prostokata to %f", 2 * dlugoscBoku + 2 * dlugoscBoku2);
+	int dlugoscBoku = r->p2.x - r->p1.x;
+	int dlugoscBoku2 = r->p2.y - r->p3.y;
+	printf("Obwod prostokata to %d\n", 2 * dlugoscBoku + 2 * dlugoscBoku2);
 }
 
 void changePoint(struct Point *p, int x, int y) {
