@@ -35,7 +35,7 @@ int main() {
     for (int i = 0; i < sizeof(tab)/sizeof(int); i++) {
         printf("%d ", tab[i]);
     }
-    int idx = binarySearch(tab, 0, sizeof(tab) / sizeof(int) - 1, 13);
+    int idx = binarySearch(tab, 0, sizeof(tab) / sizeof(int) - 1, 12);
     printf("\n%d", idx);
 	return 0;
 }
