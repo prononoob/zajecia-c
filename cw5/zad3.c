@@ -26,15 +26,23 @@ void pop(node_t** head) {
 
 void remove_last(node_t** head) {
     if (*head == NULL) {
-        printf("\nLista jest pusta");
+        printf("Lista jest pusta.\n");
         return;
     }
+
     if ((*head)->next == NULL) {
         free(*head);
         *head = NULL;
         return;
     }
-    // tu reszta ***** nie teraz juz blagam
+
+    node_t* current = *head;
+    while (current->next->next != NULL) {
+        current = current->next;
+    }
+
+    free(current->next);
+    current->next = NULL;
 }
 
 void print_list(node_t* head) {
@@ -61,7 +69,7 @@ int main() {
     add_first(&head, 0);
     print_list(head);
     pop(&head);
-    pop(&head);
+    remove_last(&head);
     print_list(head);
     return 0;
 }
