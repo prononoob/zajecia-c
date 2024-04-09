@@ -46,7 +46,35 @@ void remove_last(node_t** head) {
 }
 
 void remove_by_index(node_t** head, int index) {
+    if (*head == NULL || index < 0) {
+        printf("Lista jest pusta lub indeks jest ujemny\n");
+        return;
+    }
 
+    // Usuwanie jesli to pierwszy element
+    if (index == 0) {
+        node_t* temp = *head;
+        *head = (*head)->next;
+        free(temp);
+        return;
+    }
+
+    node_t* current = *head;
+    int i;
+    for (i = 0; i < index - 1 && current != NULL; i++) {
+        current = current->next;
+    }
+
+    // Jesli ten lub nastepny indeks jest null to znaczy ze szukanego indeksu nie ma na liscie
+    if (current == NULL || current->next == NULL) {
+        printf("Szukanego indeksu nie ma na liscie\n");
+        return;
+    }
+
+    // Usuwanie jesli indeks istnieje
+    node_t* temp = current->next;
+    current->next = temp->next;
+    free(temp);
 }
 
 void print_list(node_t* head) {
@@ -75,5 +103,7 @@ int main() {
     pop(&head);
     remove_last(&head);
     print_list(head);
+    remove_by_index(&head, 2); // Attempt to remove the element at index 2
+    print_list(head); // Print list to verify removal
     return 0;
 }
