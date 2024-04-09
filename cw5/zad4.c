@@ -103,7 +103,7 @@ int main() {
     pop(&head);
     remove_last(&head);
     print_list(head);
-    remove_by_index(&head, 2); // Attempt to remove the element at index 2
-    print_list(head); // Print list to verify removal
+    remove_by_index(&head, 2);
+    print_list(head);
     return 0;
 }
