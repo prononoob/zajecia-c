@@ -67,7 +67,7 @@ int findDigits(char** linePtr, int defaultVal) {
         // Code for case 6
         printf("You chose option 6\n");
         break;
-    case 't':
+    case 'z':
         // Code for case 7
         printf("You chose option 7\n");
         break;
