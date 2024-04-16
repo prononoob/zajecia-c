@@ -28,16 +28,28 @@ int getFirstAndLastDigit(char* line) {
     return result;
 }
 
+bool compareDigitInString(char** linePtr, char* strToCheck) {
+    bool isFound = false;
+    
+    return isFound;
+}
+
+
 int findDigits(char** linePtr, int defaultVal) {
     int result = defaultVal;
     switch (**linePtr) {
     case 'o':
-        // Code for case 1
-        printf("You chose option 1\n");
+        compareDigitInString(linePtr, "ne");
         break;
     case 't':
         // Code for case 2
-        printf("You chose option 2\n");
+        (*linePtr)++;
+        if (**linePtr == 'w') {
+            compareDigitInString(linePtr, "wo");
+        }
+        else if (**linePtr == 'h') {
+            compareDigitInString(linePtr, "hree");
+        }
         break;
     case 'f':
         // Code for case 3
@@ -59,7 +71,8 @@ int findDigits(char** linePtr, int defaultVal) {
         // Code for case 7
         printf("You chose option 7\n");
         break;
-    return result;
+        return result;
+    }
 }
 
 int main() {
