@@ -3,37 +3,6 @@
 #include <stdbool.h>
 #include <string.h>
 
-int getFirstAndLastDigit(char* line) {
-    bool foundFirstDigit = false;
-    int firstDigit = 0, secondDigit = -1;
-    while (*line != '\0') {
-        // jesli cyfra i jeszcze nie znaleziono pierwszej cyfry
-        if (*line >= '0' && *line <= '9' && !foundFirstDigit) {
-            firstDigit = *line - '0';
-            secondDigit = *line - '0';
-            foundFirstDigit = true;
-        }
-        // jesli cyfra ale juz znaleziono pierwsza cyfre
-        else if (*line >= '0' && *line <= '9' && foundFirstDigit) {
-            secondDigit = *line - '0';
-        }
-        // jesli pierwsza litera wskazuje ze to moze byc cyfra napisana slownie
-        else if (*line == 'o' || *line == 't' || *line == 'f' || *line == 's' || *line == 'e' || *line == 'n' || *line == 'z') {
-            // przypisuje do drugiej cyfry wynik bo jesli nie znaleziono drugiej cyfry to zeby sie dublowala
-            secondDigit = findDigits(&line, secondDigit);
-            if (secondDigit >= 0 && !foundFirstDigit) {
-                firstDigit = secondDigit;
-                foundFirstDigit = true;
-            }
-        }
-        line++;
-
-    }
-    int result = firstDigit * 10 + secondDigit;
-    printf("WYNIK:\t%d\n", result);
-    return result;
-}
-
 /* ta funkcja porownuje szukana slownie zapisana cyfre do kolejnych znakow
 * na ktore wskazuje pointer linePtr
 */
@@ -155,6 +124,37 @@ int findDigits(char** linePtr, int defaultVal) {
         break;
     }
     free(linePtrTemporary);
+    return result;
+}
+
+int getFirstAndLastDigit(char* line) {
+    bool foundFirstDigit = false;
+    int firstDigit = 0, secondDigit = -1;
+    while (*line != '\0') {
+        // jesli cyfra i jeszcze nie znaleziono pierwszej cyfry
+        if (*line >= '0' && *line <= '9' && !foundFirstDigit) {
+            firstDigit = *line - '0';
+            secondDigit = *line - '0';
+            foundFirstDigit = true;
+        }
+        // jesli cyfra ale juz znaleziono pierwsza cyfre
+        else if (*line >= '0' && *line <= '9' && foundFirstDigit) {
+            secondDigit = *line - '0';
+        }
+        // jesli pierwsza litera wskazuje ze to moze byc cyfra napisana slownie
+        else if (*line == 'o' || *line == 't' || *line == 'f' || *line == 's' || *line == 'e' || *line == 'n' || *line == 'z') {
+            // przypisuje do drugiej cyfry wynik bo jesli nie znaleziono drugiej cyfry to zeby sie dublowala
+            secondDigit = findDigits(&line, secondDigit);
+            if (secondDigit >= 0 && !foundFirstDigit) {
+                firstDigit = secondDigit;
+                foundFirstDigit = true;
+            }
+        }
+        line++;
+
+    }
+    int result = firstDigit * 10 + secondDigit;
+    printf("WYNIK:\t%d\n", result);
     return result;
 }
 
