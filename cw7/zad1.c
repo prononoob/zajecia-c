@@ -54,21 +54,30 @@ bool compareDigitInString(char** linePtr, char* strToCheck) {
 
 int findDigits(char** linePtr, int defaultVal) {
     int result = defaultVal;
+    char** linePtrTemporary = (char**)malloc(sizeof(char*));
     switch (**linePtr) {
     case 'o':
         (*linePtr)++;
-        if (compareDigitInString(linePtr, "ne")) {
+        *linePtrTemporary = *linePtr;
+        if (compareDigitInString(linePtrTemporary, "ne")) {
+            *linePtr = *linePtrTemporary;
             result = 1;
+        }
+        else {
+            (*linePtr)--;
         }
         break;
     case 't':
         // Code for case 2
         (*linePtr)++;
-        if (**linePtr == 'w') {
-            compareDigitInString(linePtr, "wo");
+        *linePtrTemporary = *linePtr;
+        if (**linePtrTemporary == 'w' && compareDigitInString(linePtrTemporary, "wo")) {
+            *linePtr = *linePtrTemporary;
+            result = 2;
         }
-        else if (**linePtr == 'h') {
-            compareDigitInString(linePtr, "hree");
+        else if (**linePtrTemporary == 'h' && compareDigitInString(linePtrTemporary, "hree")) {
+            *linePtr = *linePtrTemporary;
+            result = 3;
         }
         else {
             (*linePtr)--;
@@ -76,25 +85,74 @@ int findDigits(char** linePtr, int defaultVal) {
         break;
     case 'f':
         // Code for case 3
-        //printf("You chose option 3\n");
+        (*linePtr)++;
+        *linePtrTemporary = *linePtr;
+        if (**linePtrTemporary == 'o' && compareDigitInString(linePtrTemporary, "our")) {
+            *linePtr = *linePtrTemporary;
+            result = 4;
+        }
+        else if (**linePtrTemporary == 'i' && compareDigitInString(linePtrTemporary, "ive")) {
+            *linePtr = *linePtrTemporary;
+            result = 5;
+        }
+        else {
+            (*linePtr)--;
+        }
         break;
     case 's':
         // Code for case 4
-        //printf("You chose option 4\n");
+        (*linePtr)++;
+        *linePtrTemporary = *linePtr;
+        if (**linePtrTemporary == 'i' && compareDigitInString(linePtrTemporary, "ix")) {
+            *linePtr = *linePtrTemporary;
+            result = 6;
+        }
+        else if (**linePtrTemporary == 'e' && compareDigitInString(linePtrTemporary, "even")) {
+            *linePtr = *linePtrTemporary;
+            result = 7;
+        }
+        else {
+            (*linePtr)--;
+        }
         break;
     case 'e':
         // Code for case 5
-        //printf("You chose option 5\n");
+        (*linePtr)++;
+        *linePtrTemporary = *linePtr;
+        if (compareDigitInString(linePtrTemporary, "ight")) {
+            *linePtr = *linePtrTemporary;
+            result = 8;
+        }
+        else {
+            (*linePtr)--;
+        }
         break;
     case 'n':
         // Code for case 6
-        //printf("You chose option 6\n");
+        (*linePtr)++;
+        *linePtrTemporary = *linePtr;
+        if (compareDigitInString(linePtrTemporary, "ine")) {
+            *linePtr = *linePtrTemporary;
+            result = 9;
+        }
+        else {
+            (*linePtr)--;
+        }
         break;
     case 'z':
         // Code for case 7
-        //printf("You chose option 7\n");
+        (*linePtr)++;
+        *linePtrTemporary = *linePtr;
+        if (compareDigitInString(linePtrTemporary, "ero")) {
+            *linePtr = *linePtrTemporary;
+            result = 0;
+        }
+        else {
+            (*linePtr)--;
+        }
         break;
     }
+    free(linePtrTemporary);
     return result;
 }
 
@@ -116,7 +174,7 @@ int main() {
     int result = 0;
     while (fgets(line, sizeof(line), file) != NULL) {
         result += getFirstAndLastDigit(line);
-        // printf("%s", line);
+        //printf("%s", line);
     }
 
     fclose(file);
