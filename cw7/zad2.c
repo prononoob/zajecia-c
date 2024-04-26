@@ -45,7 +45,7 @@ int* readGames(char* line) {
         line += 1;
         colorOfDice = *line;
         // czy ilosc kosci wykracza poza maksimum dla tego koloru
-        if (colorOfDice == 'r' && numOfDices > r || colorOfDice == 'g' && numOfDices > 'g' || colorOfDice == 'b' && numOfDices > b) {
+        if (colorOfDice == 'r' && numOfDices > r || colorOfDice == 'g' && numOfDices > g || colorOfDice == 'b' && numOfDices > b) {
             isPossible = false;
 
         }
@@ -54,16 +54,17 @@ int* readGames(char* line) {
         case 'r':
             if (numOfDices > minValsRGB[0]) {
                 minValsRGB[0] = numOfDices;
-                break;
             }
+            break;
         case 'g':
             if (numOfDices > minValsRGB[1]) {
                 minValsRGB[1] = numOfDices;
-                break;
             }
+            break;
         case 'b':
             if (numOfDices > minValsRGB[2]) {
                 minValsRGB[2] = numOfDices;
+
                 break;
             }
         default:
